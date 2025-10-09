@@ -1,0 +1,242 @@
+name: "kishore-l5-lab"
+topology:
+  kinds:
+    ceos:
+      startup-config: ./ceos_lab_template/ceos.cfg.tpl
+      image: ceos:4.34.1F
+      exec:
+        - sleep 10
+        - FastCli -p 15 -c 'security pki key generate rsa 4096 eAPI.key'
+        - FastCli -p 15 -c 'security pki certificate generate self-signed eAPI.crt key eAPI.key generate rsa 4096 validity 30000 parameters common-name eAPI'
+      binds:
+      - ./sn/token:/mnt/flash/token:ro
+  defaults:
+    kind: ceos
+  nodes:
+    l5-borderleaf1:
+      binds:
+        - ./sn/l5-borderleaf1.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.10
+    l5-borderleaf2:
+      binds:
+        - ./sn/l5-borderleaf2.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.11
+    l5-spine1:
+      binds:
+        - ./sn/l5-spine1.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.12
+    l5-spine2:
+      binds:
+        - ./sn/l5-spine2.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.13
+    l5-spine3:
+      binds:
+        - ./sn/l5-spine3.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.14
+    l5-spine4:
+      binds:
+        - ./sn/l5-spine4.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.15
+    l5-leaf1:
+      binds:
+        - ./sn/l5-leaf1.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.16
+    l5-leaf2:
+      binds:
+        - ./sn/l5-leaf2.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.17
+    l5-leaf3:
+      binds:
+        - ./sn/l5-leaf3.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.18
+    l5-leaf4:
+      binds:
+        - ./sn/l5-leaf4.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.19
+    l5-host1:
+      binds:
+        - ./sn/l5-host1.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.20
+    l5-host2:
+      binds:
+        - ./sn/l5-host2.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.21
+    l5-host3:
+      binds:
+        - ./sn/l5-host3.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.22
+    l5-host4:
+      binds:
+        - ./sn/l5-host4.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.23
+    l5-host5:
+      binds:
+        - ./sn/l5-host5.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.24
+    l5-host6:
+      binds:
+        - ./sn/l5-host6.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.25
+    l5-host7:
+      binds:
+        - ./sn/l5-host7.txt:/mnt/flash/ceos-config:ro
+      mgmt-ipv4: 172.151.151.26
+    l5-host8:
+      binds:
+        - ./sn/l5-host8.txt:/mnt/flash/ceos-config:ro 
+      mgmt-ipv4: 172.151.151.27
+    tools_server:
+      kind: linux
+      image: ubuntu-clab:22.04
+      ports:
+        - "20006:22/tcp"
+  links:
+    - endpoints:
+        - "l5-spine2:eth1"
+        - "l5-spine1:eth1"
+    - endpoints:
+        - "l5-spine1:eth2"
+        - "l5-spine2:eth2"
+    - endpoints:
+        - "l5-spine4:eth1"
+        - "l5-spine3:eth1"
+    - endpoints:
+        - "l5-spine3:eth2"
+        - "l5-spine4:eth2"
+    - endpoints:
+        - "l5-borderleaf1:eth3"
+        - "l5-spine1:eth7"
+    - endpoints:
+        - "l5-borderleaf1:eth4"
+        - "l5-spine2:eth7"
+    - endpoints:
+        - "l5-borderleaf1:eth5"
+        - "l5-spine3:eth7"
+    - endpoints:
+        - "l5-borderleaf1:eth6"
+        - "l5-spine4:eth7"
+    - endpoints:
+        - "l5-borderleaf2:eth3"
+        - "l5-spine1:eth8"
+    - endpoints:
+        - "l5-borderleaf2:eth4"
+        - "l5-spine2:eth8"
+    - endpoints:
+        - "l5-borderleaf2:eth5"
+        - "l5-spine3:eth8"
+    - endpoints:
+        - "l5-borderleaf2:eth6"
+        - "l5-spine4:eth8"
+    - endpoints:
+        - "l5-spine1:eth3"
+        - "l5-leaf1:eth3"
+    - endpoints:
+        - "l5-spine1:eth4"
+        - "l5-leaf2:eth3"
+    - endpoints:
+        - "l5-spine1:eth5"
+        - "l5-leaf3:eth3"
+    - endpoints:
+        - "l5-spine1:eth6"
+        - "l5-leaf4:eth3"
+    - endpoints:
+        - "l5-spine2:eth3"
+        - "l5-leaf1:eth4"
+    - endpoints:
+        - "l5-spine2:eth4"
+        - "l5-leaf2:eth4"
+    - endpoints:
+        - "l5-spine2:eth5"
+        - "l5-leaf3:eth4"
+    - endpoints:
+        - "l5-spine2:eth6"
+        - "l5-leaf4:eth4"
+    - endpoints:
+        - "l5-spine3:eth3"
+        - "l5-leaf1:eth5"
+    - endpoints:
+        - "l5-spine3:eth4"
+        - "l5-leaf2:eth5"
+    - endpoints:
+        - "l5-spine3:eth5"
+        - "l5-leaf3:eth5"
+    - endpoints:
+        - "l5-spine3:eth6"
+        - "l5-leaf4:eth5"
+    - endpoints:
+        - "l5-spine4:eth3"
+        - "l5-leaf1:eth6"
+    - endpoints:
+        - "l5-spine4:eth4"
+        - "l5-leaf2:eth6"
+    - endpoints:
+        - "l5-spine4:eth5"
+        - "l5-leaf3:eth6"
+    - endpoints:
+        - "l5-spine4:eth6"
+        - "l5-leaf4:eth6"
+    - endpoints:
+        - "l5-leaf1:eth1"
+        - "l5-leaf2:eth1"
+    - endpoints:
+        - "l5-leaf2:eth2"
+        - "l5-leaf1:eth2"
+    - endpoints:
+        - "l5-leaf4:eth1"
+        - "l5-leaf3:eth1"
+    - endpoints:
+        - "l5-leaf3:eth2"
+        - "l5-leaf4:eth2"
+    - endpoints:
+        - "l5-leaf1:eth7"
+        - "l5-host1:eth1"
+    - endpoints:
+        - "l5-leaf1:eth8"
+        - "l5-host5:eth1"
+    - endpoints:
+        - "l5-leaf1:eth9"
+        - "l5-host2:eth1"
+    - endpoints:
+        - "l5-leaf1:eth10"
+        - "l5-host6:eth1"
+    - endpoints:
+        - "l5-leaf2:eth7"
+        - "l5-host1:eth2"
+    - endpoints:
+        - "l5-leaf2:eth8"
+        - "l5-host5:eth2"
+    - endpoints:
+        - "l5-leaf2:eth9"
+        - "l5-host2:eth2"
+    - endpoints:
+        - "l5-leaf2:eth10"
+        - "l5-host6:eth2"
+    - endpoints:
+        - "l5-leaf3:eth7"
+        - "l5-host3:eth1"
+    - endpoints:
+        - "l5-leaf3:eth8"
+        - "l5-host7:eth1"
+    - endpoints:
+        - "l5-leaf3:eth9"
+        - "l5-host4:eth1"
+    - endpoints:
+        - "l5-leaf3:eth10"
+        - "l5-host8:eth1"
+    - endpoints:
+        - "l5-leaf4:eth7"
+        - "l5-host3:eth2"
+    - endpoints:
+        - "l5-leaf4:eth8"
+        - "l5-host7:eth2"
+    - endpoints:
+        - "l5-leaf4:eth9"
+        - "l5-host4:eth2"
+    - endpoints:
+        - "l5-leaf4:eth10"
+        - "l5-host8:eth2"
+
+mgmt:
+  network: ceos_ks_l5_ace
+  ipv4-subnet: 172.151.151.0/24
+  ipv6-subnet: 2001:172:151:151::/80
