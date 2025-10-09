@@ -10,8 +10,6 @@ topology:
         - FastCli -p 15 -c 'security pki certificate generate self-signed eAPI.crt key eAPI.key generate rsa 4096 validity 30000 parameters common-name eAPI'
       binds:
       - ./sn/token:/mnt/flash/token:ro
-    linux:
-      image: alpine
   defaults:
     kind: ceos
 
@@ -56,7 +54,7 @@ topology:
       kind: linux
       image: ubuntu-clab:22.04
       ports:
-        - "20007:22/tcp"
+        - "40007:22/tcp"
   
   links:
     

@@ -89,7 +89,7 @@ topology:
       kind: linux
       image: ubuntu-clab:22.04
       ports:
-        - "20006:22/tcp"
+        - "40006:22/tcp"
   links:
     - endpoints:
         - "l5-spine2:eth1"
