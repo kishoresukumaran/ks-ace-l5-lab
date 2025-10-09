@@ -1,0 +1,78 @@
+---
+all:
+  children:
+    cvp:
+      hosts:
+        cvp1:
+          ansible_host: 10.100.169.50
+        cvp2:
+          ansible_host: 10.100.169.51
+        cvp3:
+          ansible_host: 10.100.169.52
+      vars:
+        ansible_user: cvpadmin
+        ansible_password: arastra
+        ansible_connection: httpapi
+        ansible_httpapi_use_ssl: true
+        ansible_httpapi_validate_certs: false
+        ansible_httpapi_port: 443
+        ansible_network_os: eos
+    fabric:
+      vars:
+        ansible_user: admin
+        ansible_password: admin
+        ansible_connection: httpapi
+        ansible_httpapi_use_ssl: true
+        ansible_httpapi_validate_certs: false
+        ansible_httpapi_port: 443
+        ansible_network_os: eos
+        ansible_become: true
+        ansible_become_method: enable
+      children:
+        spines:
+          hosts:
+            clab-kishore-l5-lab-l5-spine1:
+              ansible_host: 172.151.151.12
+            clab-kishore-l5-lab-l5-spine2:
+              ansible_host: 172.151.151.13
+            clab-kishore-l5-lab-l5-spine3:
+              ansible_host: 172.151.151.14
+            clab-kishore-l5-lab-l5-spine4:
+              ansible_host: 172.151.151.15
+        leafs:
+          hosts:
+            clab-kishore-l5-lab-l5-leaf1:
+              ansible_host: 172.151.151.16
+            clab-kishore-l5-lab-l5-leaf2:
+              ansible_host: 172.151.151.17
+            clab-kishore-l5-lab-l5-leaf3:
+              ansible_host: 172.151.151.18
+            clab-kishore-l5-lab-l5-leaf4:
+              ansible_host: 172.151.151.19
+        borderleafs:
+          hosts:
+            clab-kishore-l5-lab-l5-borderleaf1:
+              ansible_host: 172.151.151.10
+            clab-kishore-l5-lab-l5-borderleaf2:
+              ansible_host: 172.151.151.11
+    endshosts:
+      hosts:
+        clab-kishore-l5-lab-l5-host1:
+          ansible_host: 172.151.151.20
+        clab-kishore-l5-lab-l5-host2:
+          ansible_host: 172.151.151.21
+        clab-kishore-l5-lab-l5-host3:
+          ansible_host: 172.151.151.22
+        clab-kishore-l5-lab-l5-host4:
+          ansible_host: 172.151.151.23
+        clab-kishore-l5-lab-l5-host5:
+          ansible_host: 172.151.151.24
+        clab-kishore-l5-lab-l5-host6:
+          ansible_host: 172.151.151.25
+        clab-kishore-l5-lab-l5-host7:
+          ansible_host: 172.151.151.26
+        clab-kishore-l5-lab-l5-host8:
+          ansible_host: 172.151.151.27
+
+    
+    

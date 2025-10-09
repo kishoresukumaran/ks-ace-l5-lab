@@ -1,0 +1,96 @@
+path: "{{ lookup('env', 'PWD') }}"
+
+CVP_CONFIGLETS:
+  ks-l5-borderleaf1_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-borderleaf1_base_config.cfg') }}"
+  ks-l5-borderleaf2_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-borderleaf2_base_config.cfg') }}"
+  ks-l5-spine1_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-spine1_base_config.cfg') }}"
+  ks-l5-spine2_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-spine2_base_config.cfg') }}"
+  ks-l5-spine3_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-spine3_base_config.cfg') }}"
+  ks-l5-spine4_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-spine4_base_config.cfg') }}"
+  ks-l5-leaf1_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-leaf1_base_config.cfg') }}"
+  ks-l5-leaf2_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-leaf2_base_config.cfg') }}"
+  ks-l5-leaf3_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-leaf3_base_config.cfg') }}"
+  ks-l5-leaf4_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-leaf4_base_config.cfg') }}"
+  ks-l5-host1_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host1_base_config.cfg') }}"
+  ks-l5-host2_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host2_base_config.cfg') }}"
+  ks-l5-host3_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host3_base_config.cfg') }}"
+  ks-l5-host4_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host4_base_config.cfg') }}"
+  ks-l5-host5_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host5_base_config.cfg') }}"
+  ks-l5-host6_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host6_base_config.cfg') }}"
+  ks-l5-host7_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host7_base_config.cfg') }}"
+  ks-l5-host8_base_config: "{{ lookup('file','{{ path }}/configs/ks-l5-host8_base_config.cfg') }}"
+
+
+CVP_DEVICES:
+  - fqdn: 'l5-borderleaf1'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-borderleaf1_base_config'
+  - fqdn: 'l5-borderleaf2'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-borderleaf2_base_config'
+  - fqdn: 'l5-leaf1'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-leaf1_base_config'
+  - fqdn: 'l5-leaf2'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-leaf2_base_config'
+  - fqdn: 'l5-leaf3'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-leaf3_base_config'
+  - fqdn: 'l5-leaf4'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-leaf4_base_config'
+  - fqdn: 'l5-spine1'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-spine1_base_config'
+  - fqdn: 'l5-spine2'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-spine2_base_config'
+  - fqdn: 'l5-spine3'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-spine3_base_config'
+  - fqdn: 'l5-spine4'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-spine4_base_config'
+  - fqdn: 'l5-host1'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host1_base_config'
+  - fqdn: 'l5-host2'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host2_base_config'
+  - fqdn: 'l5-host3'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host3_base_config'
+  - fqdn: 'l5-host4'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host4_base_config'
+  - fqdn: 'l5-host5'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host5_base_config'
+  - fqdn: 'l5-host6'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host6_base_config'
+  - fqdn: 'l5-host7'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host7_base_config'
+  - fqdn: 'l5-host8'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'ks-l5-host8_base_config'
