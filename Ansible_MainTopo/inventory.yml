@@ -56,6 +56,16 @@ all:
             clab-kishore-l5-lab-l5-borderleaf2:
               ansible_host: 172.151.151.11
     endshosts:
+      vars:
+        ansible_user: admin
+        ansible_password: admin
+        ansible_connection: httpapi
+        ansible_httpapi_use_ssl: true
+        ansible_httpapi_validate_certs: false
+        ansible_httpapi_port: 443
+        ansible_network_os: eos
+        ansible_become: true
+        ansible_become_method: enable
       hosts:
         clab-kishore-l5-lab-l5-host1:
           ansible_host: 172.151.151.20
