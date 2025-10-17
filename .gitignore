@@ -1,3 +1,5 @@
 Ansible_JINJA/configs/
 ContainerlabTopologies/ace_l5_main_lab_topology/clab-kishore-l5-lab/
 ContainerlabTopologies/EVPN_Services_lab_topology/clab-ks-evpn-services/
+Ansible_AVD/EVPN_Services/documentation/
+Ansible_AVD/EVPN_Services/intended

@@ -1,7 +1,7 @@
 ---
 all:
   children:
-    cvp:
+    CVP:
       hosts:
         cvp1:
           ansible_host: 10.100.169.50
@@ -17,7 +17,7 @@ all:
         ansible_httpapi_validate_certs: false
         ansible_httpapi_port: 443
         ansible_network_os: eos
-    fabric:
+    FABRIC:
       vars:
         ansible_user: admin
         ansible_password: admin
@@ -29,27 +29,44 @@ all:
         ansible_become: true
         ansible_become_method: enable
       children:
-        spines:
+        SPINES:
           hosts:
-            clab-kishore-l5-lab-ks-evpn-spine1:
+            ks-evpn-spine1:
               ansible_host: 172.120.120.11
-            clab-kishore-l5-lab-ks-evpn-spine2:
+            ks-evpn-spine2:
               ansible_host: 172.120.120.12
-            clab-kishore-l5-lab-ks-evpn-spine3:
+            ks-evpn-spine3:
               ansible_host: 172.120.120.13
-        leafs:
+        LEAFS:
           hosts:
-            clab-kishore-l5-lab-ks-evpn-leaf1:
+            ks-evpn-leaf1:
               ansible_host: 172.120.120.14
-            clab-kishore-l5-lab-ks-evpn-leaf2:
+            ks-evpn-leaf2:
               ansible_host: 172.120.120.15
-            clab-kishore-l5-lab-ks-evpn-leaf3:
+            ks-evpn-leaf3:
               ansible_host: 172.120.120.16
-            clab-kishore-l5-lab-ks-evpn-leaf4:
+            ks-evpn-leaf4:
               ansible_host: 172.120.120.17
-    endshosts:
+    EVPN_SERVICES:
+      children:
+        LEAFS:
+        SPINES:
+    ENDPOINT_CONNECT:
+      children:
+        LEAFS:
+    ENDHOSTS:
+      vars:
+        ansible_user: admin
+        ansible_password: admin
+        ansible_connection: httpapi
+        ansible_httpapi_use_ssl: true
+        ansible_httpapi_validate_certs: false
+        ansible_httpapi_port: 443
+        ansible_network_os: eos
+        ansible_become: true
+        ansible_become_method: enable
       hosts:
-        clab-kishore-l5-lab-ks-evpn-host1:
+        ks-evpn-host1:
           ansible_host: 172.120.120.18
-        clab-kishore-l5-lab-ks-evpn-host2:
+        ks-evpn-host2:
           ansible_host: 172.120.120.19
