@@ -1,0 +1,16 @@
+## THIS PLAYBOOKS IS NOT WORKIN YET, WORK IN PROGRESS
+---
+- name: Deploy fabric to CVP
+  hosts: cvp1
+  gather_facts: false
+  vars_files:
+    - ../vars/cvp_modal.yml
+  tasks:
+    - name: Upload base configlets to CVP
+      arista.cvp.cv_configlet_v3:
+        configlets: "{{ CVP_CONFIGLETS }}"
+    # - name: Apply configlets to devices
+    #   arista.cvp.cv_device_v3:
+    #     devices: "{{ CVP_DEVICES }}"
+    #     state: present
+    #     apply_mode: strict

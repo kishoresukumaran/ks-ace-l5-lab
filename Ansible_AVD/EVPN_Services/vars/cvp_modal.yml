@@ -1,0 +1,41 @@
+path: "{{ lookup('env', 'PWD') }}"
+
+CVP_CONFIGLETS:
+  BASE_ks_evpn_spine1: "{{ lookup('file','{{ path }}/reset_configs/ks-evpn-spine1.cfg') }}"
+  BASE_ks_evpn_spine2: "{{ lookup('file','{{ path }}/reset_configs/ks-evpn-spine2.cfg') }}"
+  BASE_ks_evpn_spine3: "{{ lookup('file','{{ path }}/reset_configs/ks-evpn-spine3.cfg') }}"
+  BASE_ks_evpn_leaf1: "{{ lookup('file','{{ path }}/reset_configs/ks-evpn-leaf1.cfg') }}"
+  BASE_ks_evpn_leaf2: "{{ lookup('file','{{ path }}/reset_configs/ks-evpn-leaf2.cfg') }}"
+  BASE_ks_evpn_leaf3: "{{ lookup('file','{{ path }}/reset_configs/ks-evpn-leaf3.cfg') }}"
+  BASE_ks_evpn_leaf4: "{{ lookup('file','{{ path }}/reset_configs/ks-evpn-leaf4.cfg') }}"
+
+
+CVP_DEVICES:
+  - fqdn: 'ks-evpn-leaf1'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'BASE_ks_evpn_leaf1'
+  - fqdn: 'ks-evpn-leaf2'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'BASE_ks_evpn_leaf2'
+  - fqdn: 'ks-evpn-leaf3'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'BASE_ks_evpn_leaf3'
+  - fqdn: 'ks-evpn-leaf4'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'BASE_ks_evpn_leaf4'
+  - fqdn: 'ks-evpn-spine1'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'BASE_ks_evpn_spine1'
+  - fqdn: 'ks-evpn-spine2'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'BASE_ks_evpn_spine2'
+  - fqdn: 'ks-evpn-spine3'
+    parentContainerName: 'KS-ACE-L5-MainTopology'
+    configlets:
+      - 'BASE_ks_evpn_spine3'
